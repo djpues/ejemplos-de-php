@@ -67,12 +67,13 @@ $ciudades[3] = "barcelona";
 $nuevo_array[0] = "pepe";
 $nuevo_array[1] = "jose";
 
-$direccion = array("calle" => "Gran vía",
-
-"portal" => 23,
-"piso" => 5,
-"letra" => "B",
-"telefono" => 91234567);
+$direccion = array(
+    "calle" => "Gran vía",
+    "portal" => 23,
+    "piso" => 5,
+    "letra" => "B",
+    "telefono" => 91234567
+);
 
 echo $direccion['portal'];
 
@@ -84,6 +85,14 @@ $direccion = array("calle" => "Gran vía",
     "letra" => "B",
     "telefono" => $telefonos);
 echo $direccion['telefono']['casa'];
+
+
+$array1    = array("color" => "red", 2, 4);
+$array2    = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+$resultado = array_merge($array1, $array2);
+print_r($resultado);
+
+
 ?>
 
 <ul>
