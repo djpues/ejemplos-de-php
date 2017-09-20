@@ -92,8 +92,8 @@ if($db->connect_errno > 0){
 $sql = <<<SQL
 
 CREATE TABLE Usuarios (
-    user_id INT NOT NULL AUTO_INCREMENT,
-  email VARCHAR(80) NOT NULL,
+    USERID INT NOT NULL AUTO_INCREMENT,
+  USERNAME VARCHAR(80) NOT NULL,
   display_name VARCHAR(50) NOT NULL,
   password CHAR(41) NOT NULL,
   PRIMARY KEY (user_id),
@@ -134,7 +134,7 @@ while($row = $result->fetch_assoc()){
  */
 $sql = <<<SQL
     SELECT *
-    FROM `Usuarios`
+    FROM `usuarios`
     WHERE `Active` = 0 
 SQL;
 echo "<br/>\n";
@@ -162,9 +162,9 @@ $statement->free_result();
 $db->autocommit(FALSE);
 $db->commit();
 //$db->rollback();
-
+$db->autocommit(TRUE);
 $sql = <<<SQL
-INSERT INTO `Usuarios` 
+INSERT INTO `usuarios` 
   (`USERID`, `USERNAME`, `PASSWORD`, `EMAIL`, 
   `ENCRYPTMETHOD`, `Active`) VALUES 
   (NULL, 'juan', 'juan', 'juan@gmail.com', 'md5', '1');
@@ -174,30 +174,49 @@ if(!$result = $db->query($sql)){
 }
 
 printf("Affected rows (INSERT): %d<br/>\n", mysqli_affected_rows($db));
-
+$userid=$db->insert_id;
 echo "Último ID: ".$db->insert_id."<br/>";
 
-$sql = <<<SQL
-UPDATE `Usuarios` 
-  set `Active`='0' Where 'USERNAME'='juan';
-SQL;
-if(!$result = $db->query($sql)){
+$update = <<<UPDATE
+UPDATE `usuarios` SET `Active` = '0' WHERE `usuarios`.`USERID` = $userid;
+UPDATE;
+
+print $update."<br/>\n";
+if(!$result = $db->query($update)){
     die('There was an error running the query [' . $db->error . ']');
 }
 
 printf("Affected rows (UPDATE): %d<br/>\n", mysqli_affected_rows($db));
 
 $sql = <<<SQL
-DELETE FROM `Usuarios` 
-  Where 'USERNAME'='juan';
+DELETE FROM `usuarios` WHERE `usuarios`.`USERID` = $userid;
 SQL;
+print $sql."<br/>";
+
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');
 }
 
 printf("Affected rows (DELETE): %d<br/>\n", mysqli_affected_rows($db));
 
+$sql = <<<SQL
+    SELECT *
+    FROM `usuarios`;
+SQL;
+echo "<br/>\n";
+if(!$result = $db->query($sql)){
+    die('There was an error running the query [' . $db->error . ']');
+}
 
+while($row = $result->fetch_assoc()){
+    foreach($row as $indice => $valor) {
+        print "$indice => $valor<br/> ";
+    }
+}
+echo 'Total results: ' . $result->num_rows."<br/>";
+
+echo "<h3>Metadatos</h3>";
+var_dump($result->fetch_fields());
 
 $db->close();
 ?>
