@@ -22,8 +22,14 @@ echo "<h1>Hola, PHP-7!</h1>";
     <li><a href="formulario-simple.php">Formulario Simple</a></li>
     <li><a href="formularios.php">Formularios</a></li>
     <li><a href="send_files.php">Envío Ficheros</a></li>
+    <li><a href="ficheros.php">Lectura y Escritura de ficheros</a></li>
     <li><a href="email.php">Envío Email</a></li>
     <li><a href="phpmailer.php">Ejemplo PHPMailer</a></li>
+    <li><a href="sesiones.php">Sesiones</a></li>
+    <li><a href="cookies.php">Cookies</a></li>
+    <li><a href="phpspreadsheet.php">Manejo Excel</a></li>
+    <li><a href="dompdf.php">HTML to PDF</a></li>
+
 
 </ul>
 </body>
