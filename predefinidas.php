@@ -21,6 +21,32 @@ $argc — El número de argumentos pasados a un script
 $argv — Array de argumentos pasados a un script
 
 <?php
+echo "<br/>\n";
+echo "Parámetros de \$_SERVER";
+echo "<br/>\n";
+print_r($_SERVER);
+echo "<br/>\n";
+echo "<br/>\n";
+echo "Parámetros de \$_GET";
+echo "<br/>\n";
+print_r($_GET);
+echo "<br/>\n";
+echo "Parámetros de \$_POST";
+echo "<br/>\n";
+print_r($_POST);
+echo "<br/>\n";
+echo "Parámetros de \$_REQUEST";
+echo "<br/>\n";
+print_r($_REQUEST);
+echo "<br/>\n";
+if(isset($_GET['param1'])&&$_GET['param1']!=null){
+    echo "El valor de param1 es ".$_GET['param1'];
+}
+echo "<br/>\n";
+
+echo "Parámetros de \$_SESSION";
+echo "<br/>\n";
+//print_r($_SESSION);
 
 ?>
 

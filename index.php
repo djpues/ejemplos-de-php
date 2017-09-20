@@ -19,6 +19,7 @@ echo "<h1>Hola, PHP-7!</h1>";
     <li><a href="cadenas.php">Cadenas de Caracteres</a></li>
     <li><a href="arrays.php">Arrays</a></li>
     <li><a href="predefinidas.php">Variables Predefinidas</a></li>
+    <li><a href="formulario-simple.php">Formulario Simple</a></li>
     <li><a href="formularios.php">Formularios</a></li>
     <li><a href="send_files.php">Envío Ficheros</a></li>
     <li><a href="email.php">Envío Email</a></li>
