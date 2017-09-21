@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' AND isset($_FILES['image'])) {
 ?>
 <html>
 <head>
-    <title>Image resize while uploadin</title>
+    <title>Image resize while uploading</title>
     <head>
 <body>
 <!-- file uploading form -->

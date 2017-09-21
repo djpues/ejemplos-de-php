@@ -26,6 +26,20 @@ if($fh = fopen("ficheros/texto.txt","r")){ //Al colocarlo dentro de la condició
 foreach($F1 as $indice => $valor) {
     print "$indice => $valor<br/>";
 }
+
+
+//copia
+$old = '/tmp/ejemplo.txt';
+$new = '/tmp/nuevo.txt';
+copy($old, $new) or die("Unable to copy $old to $new.");
+
+//Mover/renombrar
+$old = '/tmp/nuevo.txt';
+$new = '/tmp/renombrado.txt';
+rename($old, $new) or die("Unable to rename $old to $new.");
+
+//Borrado
+unlink("/tmp/renombrado.txt");
 ?>
 
 <ul>
