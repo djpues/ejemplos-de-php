@@ -15,6 +15,9 @@
             &&$_POST['formu']['valor']!=""
             &&$_POST['formu']['valor']!=""
         )
+            //$_SESSION['nombre']=valor;
+        session_destroy();
+        session_start();
         $_SESSION[$_POST['formu']['nombre']]=$_POST['formu']['valor'];
     }
     if( isset($_SESSION)
