@@ -7,6 +7,7 @@
         "dompdf/dompdf": "^0.8.1",
         "jpgraph/jpgraph": "^4.0",
         "tecnickcom/tcpdf": "^6.2",
-        "picqer/php-barcode-generator": "^0.2.1"
+        "picqer/php-barcode-generator": "^0.2.1",
+        "gregwar/image": "^2.0"
     }
 }

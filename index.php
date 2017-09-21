@@ -23,6 +23,7 @@ echo "<h1>Hola, PHP-7!</h1>";
     <li><a href="formularios.php">Formularios</a></li>
     <li><a href="send_files.php">Envío Ficheros</a></li>
     <li><a href="resizeimage.php">Reescalado de Imágenes</a></li>
+    <li><a href="cropimage.php">Crop de Imágenes</a></li>
     <li><a href="barcode.php">Generación de Códigos de barras</a></li>
     <li><a href="anychart.php">Gráficas Javascript AnyChart</a></li>
     <li><a href="graficas.php">Gráficas Javascript HighChart</a></li>

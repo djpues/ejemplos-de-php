@@ -14,6 +14,9 @@
 </head>
 <body>
 <div id="container"></div>
+<ul>
+    <li><a href="index.php">Volver al Inicio</a></li>
+</ul>
 <script type="text/javascript">
     anychart.onDocumentReady(function() {
         // create line chart
