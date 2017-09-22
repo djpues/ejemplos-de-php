@@ -2,7 +2,7 @@ $(document).ready(function(){
     //getdeails será nuestra función para enviar la solicitud ajax
     var getdetails = function(id){
         return $.getJSON( "ajax.php", { "id" : id });
-    }
+    };
     
     //al hacer click sobre cualquier elemento que tenga el atributo data-user.....
     $('[data-user]').click(function(e){

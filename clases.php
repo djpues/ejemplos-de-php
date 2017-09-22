@@ -135,17 +135,23 @@ class Rectangle implements Shape {
         $this -> height = $height;
     }
 
+
     public function area() {
         return $this -> width * $this -> height;
     }
 }
 
+$objeto=null;
+$variable=1;
+if($variable==1){
+    $objeto = new Rectangle(3,3);
+}else{
+    $objeto = new Circle (5);
+}
 
-$rect = new Rectangle(3,3);
-echo $rect -> area();
+echo $objeto -> area();
 
-$circ = new Circle (5);
-echo $circ -> area();
+
 
 
 
@@ -172,6 +178,70 @@ class Person extends Human {
 $person = new Person('Kelly');
 echo $person->getName();
 
+
+
+class Vehiculo{
+    public $ruedas;
+    public $matricula;
+    public $marca;
+
+    public function __construct(
+        $ruedas=0,
+        $matricula="",
+        $marca="")
+    {
+        $this->ruedas=$ruedas;
+        $this->matricula=$matricula;
+        $this->marca=$marca;
+    }
+
+    public function getRuedas(){
+        return $this->ruedas;
+    }
+
+    public function setRuedas($ruedas){
+        $this->ruedas=$ruedas;
+    }
+    public function getMatricula(){
+        return $this->matricula;
+    }
+
+    public function setMatricula($matricula){
+        $this->matricula=$matricula;
+    }
+    public function getMarca(){
+        return $this->marca;
+    }
+
+    public function setMarca($marca){
+        $this->marca=$marca;
+    }
+}
+
+$vehiculo=new Vehiculo();
+
+class Coche extends Vehiculo{
+
+    public $puertas;
+
+    public function __construct($ruedas = 0, $matricula = "", $marca = "",$puertas=0)
+    {
+        $this->puertas=$puertas;
+        parent::__construct($ruedas, $matricula, $marca);
+    }
+    public function getPuertas(){
+        return $this->puertas;
+    }
+
+    public function setPuertas($puertas){
+        $this->puertas=$puertas;
+    }
+}
+
+$coche= new Coche();
+
+echo $coche->marca;
+$coche2=new Coche(4,"0987ABC","Seat",5);
 
 abstract class Products {
     protected $name;
@@ -297,6 +367,8 @@ foreach ($authors as $author) {
     echo $author -> getName();
     echo $author -> getEmail();
 }
+
+echo "Nombre del primer autor: ".$book->getAuthors()[0]->getName();
 
 
 class Autor {
