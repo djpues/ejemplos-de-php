@@ -75,18 +75,26 @@ ALTER TABLE `usuarios`
 </pre>
 
 <?php
-
-$host='localhost';
-$user='root';
-$pass='';
-$dbname='test';
-$db = new mysqli($host,$user , $pass, $dbname);
-
-if($db->connect_errno > 0){
-    die('Unable to connect to database [' . $db->connect_error . ']');
-}else{
-    echo "Conectado a la BBDD";
+function conecta(){
+    $host='localhost';
+    $user='root';
+    $pass='';
+    $dbname='test';
+    $db = new mysqli($host,$user , $pass, $dbname);
+    if($db->connect_errno > 0){
+        die('Unable to connect to database [' . $db->connect_error . ']');
+        $db=null;
+    }else{
+        echo "Conectado a la BBDD";
+    }
+    return $db;
 }
+
+$db=conecta();
+if($db==null){
+    die('Unable to connect to database ');
+}
+
 
 /*
 $sql = <<<SQL
@@ -157,6 +165,16 @@ while($statement->fetch()){
 }
 $statement->free_result();
 
+$statement = $db->prepare("SELECT * FROM `Usuarios`");
+$statement->execute();
+$result=$statement->get_result();
+while($row=$result->fetch_assoc()){
+    print_r($row);
+    echo "USERID: ".$returned_id . '<br />';
+}
+$statement->free_result();
+$result->free();
+
 
 
 $db->autocommit(FALSE);
@@ -219,6 +237,44 @@ echo "<h3>Metadatos</h3>";
 var_dump($result->fetch_fields());
 
 $db->close();
+
+
+class Conexion{
+    private $db;
+    public function __construct($host='localhost',
+                         $user='root',
+                         $pass='',
+                         $dbname='test'){
+        $this->db = new mysqli($host,$user , $pass, $dbname);
+        if($this->db->connect_errno > 0){
+            $this->db=null;
+        }else{
+            echo "Conectado a la BBDD<br/>";
+        }
+    }
+    public function consulta($sql){
+        if(!$result = $this->db->query($sql)){
+            die('There was an error running the query [' . $this->db->error . ']');
+        }
+        $resultado=array();
+        while($row = $result->fetch_assoc()){
+            foreach($row as $indice => $valor) {
+                //print "$indice => $valor<br/> ";
+                $resultado[]=$row;
+            }
+        }
+        return $resultado;
+    }
+    public function destroy(){
+        $this->db->close();
+    }
+}
+echo "<h2>Uso de Clases en BBDD</h2>";
+$conexion=new Conexion();
+$sql="Select * from usuarios";
+$resultado=$conexion->consulta($sql);
+print_r($resultado);
+$conexion->destroy();
 ?>
 
 <ul>

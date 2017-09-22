@@ -33,6 +33,7 @@ echo "<h1>Hola, PHP-7!</h1>";
     <li><a href="sesiones.php">Sesiones</a></li>
     <li><a href="cookies.php">Cookies</a></li>
     <li><a href="login.php">Login/Logout</a></li>
+    <li><a href="mysqli.php">Mysqli</a></li>
     <li><a href="phpspreadsheet.php">Manejo Excel</a></li>
     <li><a href="dompdf.php">HTML to PDF</a></li>
     <li><a href="read_xml.php">Lectura de XML</a></li>

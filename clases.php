@@ -7,6 +7,45 @@
 
 <?php
 //http://www.brainbell.com/tutorials/php/php7-oop-beginners.html
+function asignadora(&$a,$b){
+    $a=$b;
+}
+$a=1;
+$b=2;
+asignadora($a,$b);
+print ("a vale ".$a."<br/>\n");
+
+
+class Usuario{
+
+    private $name;
+    public $age;
+
+    public function __construct($name="",$age=0) {
+        $this->name=$name;
+        $this->age=$age;
+    }
+    //getter
+    public function getName(){
+        return $this->name;
+    }
+    //setter
+    public function setName($name){
+        $this->name=$name;
+    }
+
+
+}
+
+$miusuario=new Usuario();
+$miusuario->age=21;
+$miusuario->setName("pepe");
+print ($miusuario->age);
+print ($miusuario->getName());
+$otro_usuario=new Usuario("pepe",23);
+
+
+
 //Clase usuario
 class User {
     private $name;
