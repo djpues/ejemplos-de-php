@@ -4,14 +4,32 @@ $(document).ready(
         $("#formu").validate({
             errorLabelContainer:$("#error"),
             rules:{
-                "formu[USERNAME]": "required",
-                "formu[PASSWORD]":"required",
-                "formu[EMAIL]":"required"
+                "formu[USERNAME]": {
+                    required:true,
+                    minlength:8
+                },
+                "formu[PASSWORD]":{
+                    "required":true,
+                    minlength:8
+                },
+                "formu[EMAIL]":{
+                    required:true,
+                    email: true
+                }
             },
             messages: {
-                "formu[USERNAME]": "Se debe rellenar el nombre",
-                "formu[PASSWORD]":"La contraseña es obligatoria",
-                "formu[EMAIL]":"El email es obligatorio"
+                "formu[USERNAME]":{
+                    required:"Se debe rellenar el nombre",
+                    minlength:jQuery.validator.format("Se requiere un mínimo {0} caracteres para el nombre!")
+                } ,
+                "formu[PASSWORD]":{
+                    required:"Se debe rellenar la contraseña",
+                    minlength:jQuery.validator.format("Se requiere un mínimo {0} caracteres para la contraseña!")
+                } ,
+                "formu[EMAIL]":{
+                    required:"El email es obligatorio",
+                    email: "El email tiene que ser válido"
+                }
 
             }
 
