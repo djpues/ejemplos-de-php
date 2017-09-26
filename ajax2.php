@@ -1,4 +1,11 @@
 <?php
+// ./composer.phar  require respect/validation
+
+require_once "vendor/autoload.php";
+
+use Respect\Validation\Validator as v;
+use Respect\Validation\NestedValidationException as ex;
+
 class Conexion{
     private $db;
     public function __construct($host='localhost',
@@ -103,10 +110,10 @@ class Conexion{
 }
 
 $conexion=new Conexion();
-if(isset($_GET['action'])
-    &&$_GET['action']!=null
-    &&$_GET['action']!=""){
-    $action=$_GET['action'];
+if(isset($_REQUEST['action'])
+    &&$_REQUEST['action']!=null
+    &&$_REQUEST['action']!=""){
+    $action=$_REQUEST['action'];
 }else{
     $action="list";
 }
@@ -163,7 +170,6 @@ switch ($action){
         $resultados=$conexion->insertOne($user);
         break;
     case "add":
-
         if(isset($_GET['USERNAME'])
             &&$_GET['USERNAME']!=null
             &&$_GET['USERNAME']!=""){
@@ -172,9 +178,50 @@ switch ($action){
         }else{
             $user="";
         }
-        $resultados=$conexion->insert($user);
+        $resultados=[];
+        /*
+         * Validación mejorada
+         *  http://localhost/ejemplos/ajax2.php?action=add&USERNAME=pepesan27&PASSWORD=sansdfga&EMAIL=p@p.com&Active=1&ENCRYPTMETHOD=none
+         */
+        if(isset($_GET['USERNAME'])&& isset($_GET['PASSWORD'])
+            && isset($_GET['EMAIL'])&& isset($_GET['ENCRYPTMETHOD'])
+            && isset($_GET['Active'])){
+            try {
+
+                $usernameValidation=v::alnum()->length(8,null)->notEmpty();
+                $passwordValidation=v::alnum()->length(8,null)->notEmpty();
+                $emailValidation=v::notEmpty()->Email();
+                $encryptMethodValidation=v::notEmpty();
+                $activeValidation=v::numeric();
+                $usernameValidation->assert($_GET['USERNAME']);
+                $passwordValidation->assert($_GET['PASSWORD']);
+                $emailValidation->assert($_GET['EMAIL']);
+                $encryptMethodValidation->assert($_GET['ENCRYPTMETHOD']);
+                $activeValidation->assert($_GET['Active']);
+                $resultados=$conexion->insert($user);
+            } catch(NestedValidationException $exception) {
+                $resultados['error']=true;
+                $resultados['mensajes']=$exception->getFullMessage();
+            } catch(Exception $e){
+                $resultados['error']=true;
+                $resultados['mensajes']=$e->getMessages();
+            }
+        }else{
+            print "error";
+            $resultados['error']=true;
+            $resultados['mensajes']="Faltan Datos por enviar";
+        }
+
+
+
+        break;
+    case "post":
+        print_r($_REQUEST);
+        echo "<br/>\n";
+        $resultados=[];
         break;
 }
 print(json_encode($resultados));
+echo "<br/>\n";
 $conexion->destroy();
 ?>
