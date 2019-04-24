@@ -43,6 +43,9 @@ switch($beer)
         echo 'Por favor haga una nueva selección...';
         break;
 }
+
+
+
 ?>
 
 <ul>
