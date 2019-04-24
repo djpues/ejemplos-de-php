@@ -94,12 +94,14 @@
 </table>
 <?php
 echo 'esta es una cadena normal';
+echo "\n\r";
 echo 'Se pueden poner varias lineas
 de esta forma
 sin ningún problema';
+echo "\n\r";
 echo 'Para escribir el símbolo "\'" hay que usar la barra "\\"';
 // Esto mostraría: Para escribir el símbolo "'" hay que usar la barra "\"
-
+echo "\n\r";
 
 $str = <<<EOD
 Ejemplo de una cadena
@@ -107,27 +109,38 @@ expandida en varias líneas
 empleando la sintaxis heredoc.
 EOD;
 echo $str;
-
+echo "\n\r";
 $jugo = "manzana";
 
 echo "Él tomó algo de jugo de $jugo.".PHP_EOL;
+echo "\n\r";
 // Válido. Explícitamente especifica el final del nombre de la variable encerrándolo entre llaves:
 echo "Él tomó algo de jugo hecho de ${jugo}s.";
-
+echo "\n\r";
 
 
 $genial = 'fantástico';
 
 // Funciona, muestra: Esto es fantástico
 echo "Esto es {$genial}";
-
+echo "\n\r";
 
 $cadena = "hola mundo!!!";
 $valor = strlen($cadena); //$valor valdria 13
+echo "Valor: $valor";
+echo "\n\r";
 $valor = substr_count($cadena, "!");// $valor valdria 3
+echo "Valor: $valor";
+echo "\n\r";
 $valor = strchr($cadena,"!"); //$valor valdria "!!!"
+echo "Valor: $valor";
+echo "\n\r";
 $valor = strtoupper($cadena); //$valor valdría "HOLA MUNDO!!!"
+echo "Valor: $valor";
+echo "\n\r";
 $valor = strtr($cadena,"aou","áóú"); //$valor valdría "hólá múndó!!!"
+echo "Valor: $valor";
+echo "\n\r";
 ?>
 
 <ul>

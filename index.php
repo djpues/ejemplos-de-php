@@ -1,12 +1,12 @@
 <html>
 <head>
-    <title>Online PHP-7 Script Execution</title>
+    <title>Ejemplos de PHP7</title>
 </head>
 
 <body>
 
 <?php
-echo "<h1>Hola, PHP-7!</h1>";
+echo "<h1>Ejemplos de PHP7</h1>";
 ?>
 
 <ul>

@@ -6,11 +6,13 @@
 <body>
 
 <?php
+// se incluye el contenido del fichero y se ejecuta
 include "incluido.php";
-echo $variable; //esto mostraria por la pantalla 10
+echo $variable."\n"; //esto mostraria por la pantalla 10
 $variable = 20;
-include "incluido.php";
-echo $variable; //esto volveria a mostrar por pantalla 10 y no 20 ya que se ha
+// sólo se incluye y ejecuta una vez
+include_once "incluido.php";
+echo $variable."\n"; //esto volveria a mostrar por pantalla 10 y no 20 ya que se ha
 //vuelto a ejecutar nuestro fichero1.php
 ?>
 
