@@ -224,7 +224,9 @@ class Coche extends Vehiculo{
 
     public $puertas;
 
-    public function __construct($ruedas = 0, $matricula = "", $marca = "",$puertas=0)
+    public function __construct(
+            $ruedas = 0, $matricula = "",
+            $marca = "",$puertas=0)
     {
         $this->puertas=$puertas;
         parent::__construct($ruedas, $matricula, $marca);

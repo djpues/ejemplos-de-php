@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Plantilla en PHP7</title>
+    <title>Funciones en PHP7</title>
 </head>
 
 <body>

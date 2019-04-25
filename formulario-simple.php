@@ -35,7 +35,7 @@ function formulario_valida(&$formu){
                 case "minlength":
                     if (strlen($formu[$campo])<$valorcriterio){
                         $fallo=true;
-                        $errores[$campo][$criterio]="No es mayor que ".$valorcriterio;
+                        $errores[$campo][$criterio]="Tiene menos caracteres de los debidos ".$valorcriterio;
                     }
                     break;
             }
@@ -46,6 +46,20 @@ function formulario_valida(&$formu){
     $formu['errores']=$errores;
     var_dump($formu['errores']);
     echo "<br/>";
+    /*
+    if(array_count_values($errores)>0){
+        echo "<div>";
+        foreach($errores as $campo => $valores){
+            echo "<h2>CAMPO: $campo</h2><ul>";
+            foreach($valores as $criterio => $mensaje){
+                echo "<li>$criterio : $mensaje</li>";
+            }
+            echo "</ul>";
+        }
+        echo "</div>";
+
+    }
+    */
     return !$fallo;
     /*
     //var_dump($formu);
@@ -113,6 +127,24 @@ if(isset($_POST['formu'])|| isset($_GET['formu'])){
                        echo $_POST['formu']['nombre'];
                    }
                    ?>">
+            <?php
+                if (
+                        isset($_REQUEST['formu']['errores']) &&
+                        isset($_REQUEST['formu']['errores']['nombre']) &&
+                        is_array($_REQUEST['formu']['errores']['nombre']) &&
+                        array_count_values( $_REQUEST['formu']['errores']['nombre']) > 0
+                ){
+                    echo "<ul>";
+                    foreach($_REQUEST['formu']['errores']['nombre'] as $criterio => $valorcriterio) {
+                        echo "<li>";
+                        print "\t$criterio => $valorcriterio. <br/>";
+                        echo "</li>";
+
+                    }
+                    echo "</ul>";
+
+                }
+            ?>
             <br/>
             <input type="submit" name="formu[enviar]" value="enviar"/>
         </FORM>
